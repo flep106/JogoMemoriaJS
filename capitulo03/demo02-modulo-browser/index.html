@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo em navegadores</title>
+    <script src="./main.js"></script>
+    <script src="./matematica.js"></script>
+</head>
+<body>
+        <form action="">
+            <label for="tipoOperacao">Tipo Operação</label>
+            <select name="tipoOperacao" id="tipoOperacao">
+                <option value="dividir">Dividir</option>
+                <option value="subtrair">Subtrair</option>
+            </select>
+            <br>
+            <label for="valor1">Valor1</label>
+            <input type="number" id="valor1">
+            <br>
+            <label for="valor2">Valor2</label>
+            <input type="number" id="valor2">
+            <br>
+            <br>
+            <input type="button" value="Calcular" id="btnCalcular">
+            <input type="reset" value="Limpar" id="btnLimpar">
+            <br>
+            <output id="resultado">Aqui vai o resultado!!</output>
+
+        </form>
+</body>
+</html>
