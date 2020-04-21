@@ -71,6 +71,8 @@ class JogoDaMemoria {
 
         // guardamos os herois para trabalhar com eles depois
         this.itensOcultos = itensOcultos
+
+        //console.log(itensOcultos)
     }
 
     jogar() {
