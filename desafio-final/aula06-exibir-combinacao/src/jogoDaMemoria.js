@@ -111,10 +111,13 @@ class JogoDaMemoria {
                 if (opcao1.nome === item.nome && opcao1.id !== item.id) {
                     //alert('combinação correta!' + item.nome)
                     this.exibirItensDota(item.nome)
+                    // como o padrão é true n precissa passar nada
+                    this.tela.exibirMensagem()
                     return;
                 }
 
-                alert('combinação incorreta!')
+                //alert('combinação incorreta!')
+                this.tela.exibirMensagem(false)
                 break;
 
             default:
