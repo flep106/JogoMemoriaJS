@@ -1,11 +1,11 @@
-//metodos static n tem 'this'
-//por isso n vamos colocar o util dentro do construtor
+//metodos statics nao acessam o this
 const util = Util
-
 const ID_CONTEUDO = "conteudo"
 const ID_BTN_JOGAR = "jogar"
 const ID_MENSAGEM = "mensagemOk"
 const CLASSE_INVISIVEL = "invisible"
+const ID_CONTADOR = "contador"
+const ID_CARREGGANDO = "carregando"
 
 const MENSSAGENS = {
     sucesso: {
@@ -83,7 +83,7 @@ class Tela {
     }
     
     // passou nenhum parametro usa true
-    async static exibirMensagem(sucesso = true){
+    static async exibirMensagem(sucesso = true){
         const elemento = document.getElementById(ID_MENSAGEM)
         if(sucesso){
             elemento.classList.remove(MENSSAGENS.erro.classe)
@@ -97,8 +97,17 @@ class Tela {
 
         }
         elemento.classList.remove(CLASSE_INVISIVEL)
-        //some aviso
         await util.timeout(1000)
         elemento.classList.add(CLASSE_INVISIVEL)
+    }
+
+    //fn do spinner
+    static exibirCarregando(mostrar = true){
+        const carregando = document.getElementById(ID_CARREGGANDO)
+        if(mostrar){
+            carregando.classList.remove(CLASSE_INVISIVEL)
+            return;
+        }
+        carregando.classList.add(CLASSE_INVISIVEL)
     }
 }

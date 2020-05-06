@@ -29,8 +29,7 @@ class JogoDaMemoria {
 
     }
 
-    //usando async pq tem await dentro do metodo
-    async embaralhar() {
+    embaralhar() {
         const copiaItens = this.itensDota
             //duplica os itens
             .concat(this.itensDota)
@@ -47,19 +46,18 @@ class JogoDaMemoria {
         this.tela.atualizarImagens(copiaItens)
 
         //console.log( this.esconderItens(copiaItens))
-        console.log(copiaItens)
+        // console.log(copiaItens)
 
         //this.esconderItens(copiaItens)
-        
+        // espera 5 seg pra esconder (sem promise)
+        setTimeout(() => {
+            this.esconderItens(copiaItens)
+        }, 3000)
 
-        // espera 5 seg pra esconder (usando callback)
-        // setTimeout(() => {
-        //     this.esconderItens(copiaItens)
-        // }, 3000)
-
-        //usando Promise
-        await this.util.timeout(2000)
-        this.esconderItens(copiaItens)
+        this.tela.exibirCarregando(false)
+        // com promise n ta funfando
+        // await this.util.timeout(1000)
+        // this.esconderItens(copiaItens)
         
 
     }
