@@ -7,13 +7,13 @@ class JogoDaMemoria {
         this.util = util
         // caminho relativo referente ao index.html
         this.itensDota = [
-            { img: './arquivos/teleport.png', nome: 'Teleport' },
-            { img: './arquivos/scepter.png', nome: 'Scepter' },
-            { img: './arquivos/quellingblade.png', nome: 'QuellingBlade' },
-            { img: './arquivos/tango.png', nome: 'Tango' }
+            { img: './arquivos/Teleport.png', nome: 'Teleport' },
+            { img: './arquivos/Scepter.png', nome: 'Scepter' },
+            { img: './arquivos/QuellingBlade.png', nome: 'QuellingBlade' },
+            { img: './arquivos/Tango.png', nome: 'Tango' }
         ]
         this.iconePadrao = './arquivos/dota-2-sym.png'
-        this.itensEscondidos = []
+        this.itensOcultos = []
         this.itensSelecionados = []
     }
     //para usar o this, não podemos usar static
@@ -26,6 +26,8 @@ class JogoDaMemoria {
         this.tela.configurarBotaoJogar(this.jogar.bind(this))
         // da tela passa o contexto do jogo da memoria
         this.tela.configurarBotaoVerificarSelecao(this.verificarSelecao.bind(this))
+        //passar o contexto pro botao
+        this.tela.configurarBotaoMostrarTudo(this.mostrarItensEscondidos.bind(this))
 
     }
 
@@ -51,9 +53,13 @@ class JogoDaMemoria {
         //this.esconderItens(copiaItens)
         // espera 5 seg pra esconder (sem promise)
         this.tela.exibirCarregando()
+        this.tela.iniciarContador()
+        // const idDoIntervalo = this.tela.iniciarContador()
+        
         setTimeout(() => {
             this.esconderItens(copiaItens)
-        }, 2000)
+        }, 3000)
+        this.tela.limparContador()
 
         this.tela.exibirCarregando(false)
         // com promise n ta funfando
@@ -131,6 +137,16 @@ class JogoDaMemoria {
             default:
                 break;
         }
+    }
+
+    mostrarItensEscondidos(){
+        const itensEscondidos = this.itensOcultos
+        for (const itemAtual of itensEscondidos) {
+            //sintaxe pra extrair da propriedade apenas o atributo img
+            const { img } = this.itensDota.find(elemento => elemento.nome === itemAtual.nome)
+            itemAtual.img = img
+        }
+        this.tela.atualizarImagens(itensEscondidos)
     }
 
     jogar() {

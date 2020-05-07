@@ -4,8 +4,10 @@ const ID_CONTEUDO = "conteudo"
 const ID_BTN_JOGAR = "jogar"
 const ID_MENSAGEM = "mensagemOk"
 const CLASSE_INVISIVEL = "invisible"
+const CLASSE_VISIVEL = "visible"
 const ID_CONTADOR = "contador"
 const ID_CARREGGANDO = "carregando"
+const ID_BTN_MOSTRARTUDO = "mostrarTudo"
 
 const MENSSAGENS = {
     sucesso: {
@@ -74,6 +76,11 @@ class Tela {
         window.verificarSelecao = funcaoOnClick
     }
 
+    static configurarBotaoMostrarTudo(funcaoOnClick){
+        const btnMostrarTudo = document.getElementById(ID_BTN_MOSTRARTUDO)
+        btnMostrarTudo.onclick = funcaoOnClick
+    }
+
     static exibirItensDota(nomeItem, img) {
         //pega o elemento da tela pelo nome
         const elementosHtml = document.getElementsByName(nomeItem)
@@ -106,10 +113,37 @@ class Tela {
         const carregando = document.getElementById(ID_CARREGGANDO)
         if(mostrar){
             carregando.classList.remove(CLASSE_INVISIVEL)
-            return;
+            //carregando.classList.add(CLASSE_VISIVEL)
+        }else{
+            carregando.classList.add(CLASSE_INVISIVEL) 
         }
-        carregando.classList.add(CLASSE_INVISIVEL)
+        
+        
     }
-    
+
+    static iniciarContador(){
+        let contarAte = 3
+        const elementoContador = document.getElementById(ID_CONTADOR)
+        // vamos substituir o texto começando $$contador segundos
+        // onde está $$contador vamos add o valor (âncora)
+        const identificadorTexto ="$$contador"
+        const textoPadrao = `Começando em ${identificadorTexto} segundos...`
+
+        const atualizarTexto = () => 
+        (elementoContador.innerHTML = textoPadrao.replace(identificadorTexto, contarAte--))
+
+        atualizarTexto()
+        //cada segundo vai chamar a funcao
+        //ela vai subtituir o $$contador pelo 'contarAte' decrementando
+        //retorna o idIntervalo pra parar ele mais tarde
+        const idDoIntervalo = setInterval(atualizarTexto, 1000)
+        return idDoIntervalo
+    }
+
+    static limparContador(idDoIntervalo){
+        clearInterval(idDoIntervalo)
+        document.getElementById(ID_CONTADOR).innerHTML = ""
+    }
+
 
 }
