@@ -1,4 +1,4 @@
-const pessoa ={
+const pessoa = {
     _nome: '',
     _idade: 20,
 

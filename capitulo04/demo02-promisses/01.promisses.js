@@ -26,7 +26,7 @@ function questionAsync(textoPergunta){
 
 let nome = ''
 let telefone = ''
-// Usamos logo o resolve() para executar logo a funcao com o 1 primeiro texto
+// Usamos logo o resolve() para executar logo a funcao com o 1º texto
 Promise.resolve()
         .then(() => questionAsync('Qual seu nome?'))
         .then(respostaNome => {

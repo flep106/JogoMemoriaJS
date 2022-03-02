@@ -18,7 +18,7 @@ function questionAsync(textoPergunta){
 //1- pra trabalhar com async o obj Promise tem que existir
 async function main() {
     try {
-        const nome = await questionAsync('Qual seu nomde?')
+        const nome = await questionAsync('Qual seu nome?')
         const telefone = await questionAsync('Qual seu telefone?')
         console.log(`Nome: ${nome}, Telefone ${telefone}`)
     } catch (error) {
